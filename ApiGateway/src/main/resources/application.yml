@@ -1,0 +1,27 @@
+server:
+  port: 8765
+  
+spring:
+  application:
+    name: APIGATEWAY
+  
+  
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: SWIPE-SERVICE
+            uri: lb://SWIPE-SERVICE
+            predicates:
+                - Path=/swipe/**
+        
+eureka:
+  client:
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    register-with-eureka: true
+    service-url:
+    defaultZone: http://localhost:8761/eureka
+    
+    
